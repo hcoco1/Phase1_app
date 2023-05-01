@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style.css" />
+  <title>hcoco1</title>
+</head>
+
+<body>
+  <div>
+    <p>Select a color theme</p>
+    <select name="theme-select" id="theme-select">
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+      <option value="blue">Blue</option>
+      <option value="pink">Pink</option>
+      <option value="space">Space</option>
+      <option value="nyan">Nyan</option>
+    </select>
+
+    
+  </div>
+  <h1>World Population Dashboard</h1>
+
+<header>
+    <div class="container">
+    <div class="left">
+      <form id="add-country-flag">
+        
+        <input type="submit" name="submit" value="Add a flag" class="submit" />
+        <input type="text" name="name" value="" placeholder="Enter a country name..." class="input-text" />
+        <br />
+        <input type="text" name="image" value="" placeholder="Enter a country image URL..." class="input-text" />
+        <br />
+        
+      </form>
+    </div>
+    <div class="center">
+      <form id="create-task-form" action="#" method="POST">
+        <label for="new-task-description"></label>
+        <input type="submit" value="Search" />
+        <input type="text" id="new-task-description" name="new-task-description" placeholder="type a country name" />
+        
+      </form>
+    </div>
+    <div class="right">
+      <form id="dropdown">
+        <label for="select-country"></label>
+        <select id="country-dropdown" name="select-country">
+          <option value="asc">Sort by Name: Ascending</option>
+          <option value="desc">Sort by Name: Descending</option>
+        </select>
+      </form>
+    </div>
+
+
+  </div>
+</header>
+
+<main>
+    <div class="country-collection">
+    <ul id="output"></ul>
+  </div>
+</main>
+
+
+
+
+
+</body>
+<footer></footer>
+<script src="main copy 3.js" charset="utf-8"></script>
+
+</html>
