@@ -1,4 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+  const themeSelect = document.querySelector('#theme-select');
+
+  function setTheme(theme) {
+    document.body.className = theme;
+  }
+  
+  themeSelect.addEventListener('change', () => {
+    if (themeSelect.value === 'dark') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  });
+
+
   //get all countries
   fetch("http://localhost:3000/countries")
     .then((res) => res.json())
@@ -12,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const sortBy = document.getElementById("sort-by");
   const countryList = document.getElementById("country-list");
   const arrayCountries = [];
+  
+ 
 
   // handle and display countries
   function handleData(countries) {
@@ -92,7 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
   filterForm.addEventListener("click", (e) => {
     output.innerHTML = "";
     e.preventDefault();
-
     let itemText = inputBoxSearch.value;
     arrayCountries.forEach((o) => {
       if (o.country.toLowerCase() === itemText.toLowerCase()) {

@@ -1,0 +1,20 @@
+@media (max-width: 844px) {
+    #one {
+      
+      width: 500px;
+      margin: 5%
+    }
+    #two {
+        
+      width: 500px;
+      margin: 5%
+    }
+    #three {
+       
+      width: 500px;
+      margin: 5%
+    }
+    #theme-select {
+        width: 30%;
+      }
+}

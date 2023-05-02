@@ -1,35 +1,12 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 
 * {
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Open Sans', sans-serif;
-  max-width: 1000px;
-  min-width: 540px;
-  margin: 0 auto;
-  background: #FFEEEE;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #DDEFBB, #a07777);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #cdf0c5, #eccece);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  border-color: #2b2a2a;
-  border-bottom: solid;
-  border-left: solid;
-  border-right: solid;
-  border-top: solid;
-}
-
-
-
-
-
-input[type=text], select {
-  background-image: url('searchicon.png');
+input[type="text"],
+select {
+  background-image: url("searchicon.png");
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -39,9 +16,9 @@ input[type=text], select {
   box-sizing: border-box;
 }
 
-input[type=submit] {
+input[type="submit"] {
   width: 100%;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -50,12 +27,18 @@ input[type=submit] {
   cursor: pointer;
 }
 
-input[type=submit]:hover {
+input[type="submit"]:hover {
   background-color: #45a049;
 }
 
+
+
+#theme-select {
+  width: 10%;
+}
+
 button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -64,12 +47,10 @@ button {
   cursor: pointer;
 }
 .box {
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-font-size: larger;
-color: #45a049
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: larger;
+  color: #45a049;
 }
-
-
 
 h1 {
   text-align: center;
@@ -81,106 +62,66 @@ h5 {
 }
 
 
-
-
-:root,
-:root.light {
-  --bg-color: #fff;
-  --text-color: #123;
-}
-
-:root.dark {
-  --bg-color: #121212;
-  --text-color: #696d7d;
-}
-
-:root.blue {
-  --bg-color: #05396B;
-  --text-color: #E7F1FE;
-}
-
-:root.pink {
-  --bg-color: #ffcad4;
-  --text-color: #e75480;
-}
-
-:root.space {
-  --bg-color: #c8d1c7;
-  --text-color: #67a46f;
-  --bg-url: 
-  --font-family: 
-}
-
-:root.nyan {
-  --bg-color: #ffbc38;
-  --text-color: #fff;
-  --bg-url: 
-  --font-family: 'Comic Neue', cursive;
-}
-
-
-
-
-
-
-
-
-
-
 .container {
-  border-bottom: solid;
-border-top: solid;
-  display:flex;
-  justify-content:space-between;
+  padding: 5px;
+  display: flex;
   align-items: center;
-  padding: 20px;
-   }
-
-.left{
-  
-  width:33.33vw;
-  padding: 20px;
+  justify-content: center;
+  justify-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
 }
-
-.center{
-  
-   width:33.33vw;
-   padding: 20px;
+#one {
+  width: 30%;
 }
-
-.right{
-  
-   width:33.33vw;
-   padding: 20px;
+#two {
+  width: 30%;
 }
-
+#three {
+  width: 30%;
+}
 
 .country-collection {
-  
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-  .country-avatar {
-    justify-self: center;
-    height: 12rem;
-    width: auto;
-  }
+.country-avatar {
+  justify-self: center;
+  height: 10rem;
+  width: auto;
+}
 
-  .card {
-    text-align: center;
-    border: rgb(102, 89, 89) solid 1px;
-    padding: 0;
-    width: 25rem;
-    height: 35rem;
-    display: inline-grid;
-  
-   
+.card {
+  text-align: center;
+  border: rgb(102, 89, 89) solid 1px;
+  padding: 0;
+  width: 25rem;
+  height: 35rem;
+  display: inline-grid;
+  margin: 1rem 1rem;
+  box-shadow: 3px 4px #7d9c90;
+  background-color: #ffffe2;
+}
 
-    margin: 1rem 1rem;
-    box-shadow: 3px 4px #7d9c90;
-    background-color: #ffffe2;
-  }
-  
+/* Light Theme */
+body {
+  background-color: rgb(224, 223, 200);
+  color: black;
+}
 
+header {
+  color: black;
+}
+
+/* Dark Theme */
+body.dark {
+  background-color: rgb(43, 54, 33);
+  color: rgb(160, 12, 12);
+}
+
+body.dark header {
+  color: rgb(179, 90, 90);
+}
