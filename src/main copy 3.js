@@ -6,6 +6,7 @@ const init = () => {
   const sortForm = document.querySelector("#dropdown");
   const arrayCountries = [];
 
+ 
   const displayData = (countries) => {
     output.innerHTML = "";
     for (const country of countries) {
@@ -20,11 +21,11 @@ const init = () => {
       countryImage.className = "country-avatar";
       countryImage.src = country.flagUrl;
       const populationTitle = document.createElement("h4");
-      populationTitle.textContent = `Population: ${country.Population}`;
+      populationTitle.textContent = `population: ${country.population}`;
       const malePopu = document.createElement("h5");
-      malePopu.textContent = `Male Population: ${country.male_population}`;
+      malePopu.textContent = `Male population: ${country.male_population}`;
       const femaPopu = document.createElement("h5");
-      femaPopu.textContent = `Female Population: ${country.female_population}`;
+      femaPopu.textContent = `Female population: ${country.female_population}`;
       output.appendChild(countryCard);
       countryCard.appendChild(divCard);
       divCard.appendChild(countryTitle);
@@ -56,7 +57,8 @@ const init = () => {
         });
       });
     }
-    filteredCountries()
+    
+
   };
 
   const filteredCountries = (country) => {
@@ -68,29 +70,8 @@ const init = () => {
       arrayCountries.forEach((o) => {
         if (o.country.toLowerCase() === itemText.toLowerCase()) {
           output.innerHTML = "";
-  
-          let fcountryCard = document.createElement("li");
-          fcountryCard.className = "card";
-          let fdivCard = document.createElement("div");
-          fdivCard.className = "cardContent";
-          let fcountryTitle = document.createElement("h2");
-          fcountryTitle.textContent = o.country;
-          let fcountryImage = document.createElement("img");
-          fcountryImage.className = "country-avatar";
-          fcountryImage.src = o.flagUrl;
-          let fpopulationTitle = document.createElement("h4");
-          fpopulationTitle.textContent = `Population: ${o.Population}`;
-          let fmalePopu = document.createElement("h5");
-          fmalePopu.textContent = `Male Population: ${o.male_population}`;
-          let ffemaPopu = document.createElement("h5");
-          ffemaPopu.textContent = `Female Population: ${o.female_population}`;
-          document.querySelector("#output").appendChild(fcountryCard);
-          fcountryCard.appendChild(fdivCard);
-          fdivCard.appendChild(fcountryTitle);
-          fdivCard.appendChild(fcountryImage);
-          fdivCard.appendChild(fpopulationTitle);
-          fdivCard.appendChild(fmalePopu);
-          fdivCard.appendChild(ffemaPopu);
+          displayData(o)
+
         }
       });
     });

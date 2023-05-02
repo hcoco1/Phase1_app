@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="cardContent">
             <h2>${countries[key].country}</h2>
             <img class="country-avatar" src="${countries[key].flagUrl}">
-            <h4>Population: ${countries[key].Population}.</h4>
-            <h5>Male Population: ${countries[key].male_population}.</h5>
-            <h5>Female Population: ${countries[key].female_population}.</h5>
+            <h4>population: ${countries[key].population}.</h4>
+            <h5>Male population: ${countries[key].male_population}.</h5>
+            <h5>Female population: ${countries[key].female_population}.</h5>
             </div>`;
             
       document.querySelector("#output").appendChild(countryCard);

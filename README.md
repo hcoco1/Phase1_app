@@ -1,23 +1,15 @@
 # This site is unfinished but actively being worked on.
 
 
-# `Phase 1 Project: World Population Dashboard`
-## Learning Goals
+## `Phase 1 Project: World population Dashboard`
+
 
 ---
 
-**World Population Dashboard (WPD)** is a HTML/CSS/JS app that accesses  data from a db.json file using a     json-server. WPD return a colection of 297 countries around the world and each object has six attributes (country, area_in_Square_Kilometers, Population, male_population, female_population and flagUrl) . All interactions are handled asynchronously and use JSON as the communication format.
+**World population Dashboard (WPD)** is a HTML/CSS/JS app that accesses  data from a db.json file using a     json-server. WPD return a collection of 297 countries around the world and each object has six attributes (country, area_in_Square_Kilometers, population, male_population, female_population and flagUrl) . All interactions are handled asynchronously and use JSON as the communication format.
  
 ---
-
-
-
-
-
-# Project Structure
-
-
-
+### Project Structure
 
 * **WPD** run on a single page and contain a single HTML, CSS and JS files.
 

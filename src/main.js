@@ -41,9 +41,9 @@ function getData() {
                           <div class="cardContent">
                           <h2>${val["country"]}</h2>
                           <img class="country-avatar" src="${val["flagUrl"]}">
-                          <h4>Population: ${val["Population"]}.</h4>
-                          <h5>Male Population: ${val["male_population"]}.</h5>
-                          <h5>Female Population: ${val["female_population"]}.</h5>
+                          <h4>population: ${val["population"]}.</h4>
+                          <h5>Male population: ${val["male_population"]}.</h5>
+                          <h5>Female population: ${val["female_population"]}.</h5>
                           </div>
                           `;
         document.querySelector("#output").appendChild(countryCard);
