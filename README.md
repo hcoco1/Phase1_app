@@ -10,6 +10,10 @@
 **World Population Dashboard (WPD)** is a HTML/CSS/JS app that accesses data from a db.json file using a     json-server. WPD returns a collection of 297 countries worldwide, and each object has six attributes (country, area_in_Square_Kilometers, population, male_population, female_population, and flagUrl). The app fetch all the data as soon the browser load. Also,  The user can search for a specific country using a html form. Additionally, the collection of countries can be sorted by their properties, like by country name, for instance. Moreover, the user can check the information for a specific country and add a new or different flag. Finally, user can leave personalized messages by clicking on a flag. All interactions are handled asynchronously and use JSON as the communication format.
  
 ---
+
+![how this app works](https://github.com/hcoco1/Phase1_app/blob/main/phase_1_app.gif?raw=true) 
+ 
+---
 ### Project Structure
 
 * **WPD** runs on a single page and contain a single HTML, CSS, and JS files.
