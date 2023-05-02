@@ -1,20 +1,56 @@
-# This site is unfinished but actively being worked on.
+# This App is unfinished but actively being worked on.
 
 
-## `Phase 1 Project: World population Dashboard`
+## `Phase 1 Project: World Population Dashboard`
 
 
 ---
+## Project Pitch
 
-**World population Dashboard (WPD)** is a HTML/CSS/JS app that accesses  data from a db.json file using a     json-server. WPD return a collection of 297 countries around the world and each object has six attributes (country, area_in_Square_Kilometers, population, male_population, female_population and flagUrl) . All interactions are handled asynchronously and use JSON as the communication format.
+**World Population Dashboard (WPD)** is a HTML/CSS/JS app that accesses data from a db.json file using a     json-server. WPD returns a collection of 297 countries worldwide, and each object has six attributes (country, area_in_Square_Kilometers, population, male_population, female_population, and flagUrl). The app fetch all the data as soon the browser load. Also,  The user can search for a specific country using a html form. Additionally, the collection of countries can be sorted by their properties, like by country name, for instance. Moreover, the user can check the information for a specific country and add a new or different flag. Finally, user can leave personalized messages by clicking on a flag. All interactions are handled asynchronously and use JSON as the communication format.
  
 ---
 ### Project Structure
 
-* **WPD** run on a single page and contain a single HTML, CSS and JS files.
+* **WPD** runs on a single page and contain a single HTML, CSS, and JS files.
 
-* **WPD** use  four distinct event listeners (two submit events, one change event and one click event). What this means is that, if you had 2 click events, that would only count as 1 distinct event and you would need to add at least 1 more. Think search or filter functionality, toggling dark/light mode, upvoting posts, etc. Each of your event listeners should also have its own unique callback function. These must be added using JavaScript's .addEventListener() method. Events embedded into HTML elements and CSS will not count toward the total. Please ask your instructor if you have questions regarding this requirement.
+* **WPD** uses four distinct event listeners:
 
-* Your project must implement at least one instance of array iteration using available array methods (map, forEach, filter, etc). Manipulating your API data in some way should present an opportunity to implement your array iteration.
+      1. Event listener with a DOMContentLoaded event.
+      
+      2. Event listener with a submit event toggling dark/light mode.  
+      
+      3. Event listener with a click event to show an input.
+      
+      4. Event listener (nested) with a submit event to leave a message on the country card
+      
+      5. Event listener with a change event to sort an array of objects.
+      
+      6. Event listener with a submit event to add flags making a patch request.
+      
+      
+* **WPD** use:
 
-* Follow good coding practices. Keep your code DRY (Do not repeat yourself) by utilizing functions to abstract repetitive code.
+      1. Two if statements.
+      
+      2. One for in loop.  
+      
+      3. One .push() method.
+      
+      4. One .forEach method.
+      
+      5. One .sort() method.
+      
+      6. One GET method.
+      
+      7. One PATCH method.
+      
+      
+##  Challenges
+
+        1. Write a clean code
+        
+        2. Add a flag to the country cards using the PATCH method.
+        
+        3. Deployment (not mandatory)
+
