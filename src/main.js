@@ -16,7 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
   //get all countries
   fetch("http://localhost:3000/countries")
     .then((res) => res.json())
-    .then((countries) => handleData(countries));
+    .then((countries) => {
+      countries.forEach((country) => {
+        arrayCountries.push(country);
+      });
+      handleData(countries);
+      //console.log(arrayCountries)
+    });
 
   //declare all variables.
   const output = document.querySelector("#output");
@@ -31,18 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
   function handleData(countries) {
     output.innerHTML = "";
     for (const key in countries) {
-      arrayCountries.push(countries[key]);
       const countryCard = document.createElement("li");
       countryCard.className = "card";
       const divCard = document.createElement("div");
       divCard.className = "cardContent";
-
       const countryTitle = document.createElement("h2");
       countryTitle.textContent = countries[key].country;
       const countryImage = document.createElement("img");
       countryImage.className = "country-avatar";
+      //console.log(countries[key].flagUrl)
       countryImage.src = countries[key].flagUrl;
-
       const populationTitle = document.createElement("h5");
       populationTitle.textContent = `According to 2023 data, the total population of ${
         countries[key].country
@@ -58,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         key
       ].area_in_Square_Kilometers.toLocaleString()} square kilometers.
       `;
-      const commenbox = document.createElement("h5");
+
       const ulComment = document.createElement("ul");
       ulComment.className = "comments";
       const liComment = document.createElement("li");
@@ -99,12 +103,20 @@ document.addEventListener("DOMContentLoaded", () => {
       // Add an event listener
       commenForm.addEventListener("submit", (e) => {
         e.preventDefault();
+        arrayCommnets = []; //array to store the messages
         console.log(e);
         const message = textarea.value;
         console.log(message);
         pFinalMessage.textContent = `User Messages:`;
         liFinalMessage.style.listStyle = "disc";
         liFinalMessage.innerText = `${textarea.value}`;
+        arrayCommnets.push(textarea.value);
+        console.log(arrayCommnets);
+        arrayCommnets.forEach((comment) => {
+          console.log(arrayCountries.id)
+
+
+        })
       });
     }
   }
@@ -114,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function filterCountry(property, dattaArray) {
     // Clear the previous results.
     output.innerHTML = "";
-    console.log(output);
+    //console.log(output);
     let itemText = inputBoxSearch.value;
     // filter the array of countries by the selected property.
     dattaArray.forEach((o) => {
@@ -141,20 +153,28 @@ document.addEventListener("DOMContentLoaded", () => {
   // Sorts an array of country objects by the given property and displays the sorted results.
   function sortCountries(property, dataArray) {
     // Clear the previous results.
-    output.innerHTML = "";
-    
+
+    console.log(dataArray);
     // Sort the array of countries by the selected property.
-    dataArray.sort((b, a) => {
+    const newvar = dataArray.sort((b, a) => {
       if (a[property] < b[property]) return -1;
       if (a[property] > b[property]) return 1;
       return 0;
-    });
+    }); //console.log(arrayCountries)
     // Display the sorted results.
-    handleData(dataArray);
+
+    console.log(dataArray);
+    handleData(newvar);
+    console.log(dataArray);
   }
 
   // Add an event listener to the "change" event of the sorting dropdown.
   sortBy.addEventListener("change", (event) => {
+    output.childNodes.forEach((li) => {
+      //console.log(li);
+      li.remove();
+    });
+
     // Get the selected property from the dropdown.
     const selectedProperty = event.target.value;
 
@@ -165,18 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //ADD FLAGS
 
   function addFlags() {
-    console.log(arrayCountries.id);//UNDEFINED WHY??
-    fetch(`http://localhost:3000/countries${arrayCountries.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        country: addFlagForm[1].value,
-        flagUrl: addFlagForm[2].value,
-      }),
-    });
+    console.log(arrayCountries.id); //UNDEFINED WHY??
   }
 
   document.querySelector("form").addEventListener("submit", (e) => {

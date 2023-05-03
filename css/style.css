@@ -4,15 +4,13 @@
   box-sizing: border-box;
 }
 
-
 li {
   list-style: none;
 }
 
 input[type="text"],
 select {
-  background-image: url("searchicon.png");
-  width: 100%;
+  width: 120%;
   padding: 12px 20px;
   margin-right: 8px;
   display: inline-block;
@@ -22,7 +20,7 @@ select {
 }
 
 input[type="submit"] {
-  width: 100%;
+  width: 90%;
   background-color: #4caf50;
   color: white;
   padding: 14px 20px;
@@ -35,10 +33,6 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: #45a049;
 }
-
-
-
-
 
 #theme-select {
   width: 10%;
@@ -67,10 +61,9 @@ h5 {
   text-align: justify;
   margin-left: 5%;
   margin-right: 5%;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   line-height: 2;
 }
-
 
 .container {
   padding: 5px;
@@ -83,13 +76,14 @@ h5 {
   width: 100%;
 }
 #one {
-  width: 30%;
+  width: 40%;
 }
 #two {
   width: 30%;
 }
 #three {
-  width: 30%;
+  width: 20%;
+  margin-right: 4%;
 }
 
 .country-collection {
@@ -122,7 +116,6 @@ h5 {
   background-color: #ffffe2;
 }
 
-
 .comment-area {
   width: 60%;
   height: 50px;
@@ -144,7 +137,7 @@ h5 {
   cursor: pointer;
 }
 form {
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -163,22 +156,15 @@ form {
   font-weight: 700;
 }
 .input-container {
-  display:-ms-inline-grid
+  display: -ms-inline-grid;
 }
 
 .p-final-Message {
   color: #4caf50;
   font-weight: 1000;
- text-align: left;
- margin-left: 5%;
-  
+  text-align: left;
+  margin-left: 5%;
 }
-
-
-
-
-
-
 
 /* Light Theme */
 body {
