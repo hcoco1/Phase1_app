@@ -4,9 +4,9 @@
 
 Project Pitch
 
-**World Population Dashboard (WPD)** is an HTML/CSS/JS app that accesses data from a db.json file using a JSON server. WPD returns a collection of 297 countries. Each object has six attributes (country, area_in_Square_Kilometers, population, male_population, female_population, and flagUrl). The App fetches all the data as soon the browser load. Also, The user can search for a specific country using a html form. Additionally, users can sort the collection by their properties.
+**World Population Dashboard (WPD)** is an HTML/CSS/JS app that accesses data from a db.json file using a JSON server. WPD returns a collection of 297 countries. Each object has six attributes (country, area_in_Square_Kilometers, population, male_population, female_population, and flagUrl). The App fetches all the data as soon the browser load. Also, users can search for a specific country using an HTML form and sort the collection by their properties.
 
-Moreover, the user can check the information for a specific country and add a new or different flag. Finally, users can leave personalized messages by clicking on a flag. 
+Moreover, the user can check the information for a specific country and add a new or different flag. Finally, users can leave personalized messages by clicking on a country flag. 
  
 ---
 
@@ -17,27 +17,25 @@ Project Structure
 
 **World Population Dashboard** runs on a single page and contains single HTML, CSS, and JS files.
 
-World Population Dashboard uses an HTML/CSS/JS app that accesses data from a db.json file using a JSON server. WPD returns a collection of 297 countries. Each object has six attributes (country, area_in_Square_Kilometers, population, male_population, female_population, and flagUrl). The App fetches all the data as soon the browser load. Also, The user can search for a specific country using a html form. Additionally, users can sort the collection by their properties.
 
-**World Population Dashboard**  use:
 
-1. Event listener with a DOMContentLoaded event.
+**World Population Dashboard** App uses:
 
-2. Event listener with a submit event toggling dark/light mode. 
+1. An event listener with a DOMContentLoaded event.
 
-3. Event listener with a click event to show an input.
+2. An event listener with a submit event toggling dark/light mode. 
 
-4. Event listener (nested) with a submit event to leave a message on the country card
+3. An event listener with a click event to show an input.
 
-5. Event listener with a change event to sort an array of objects.
+4. An event listener with a change event to sort an array of objects.
 
-6. Event listener with a submit event to add flags making a patch request.
+5. An event listener with a submit event to add flags making a patch request.
 
-**World Population Dashboard**  use:
+**World Population Dashboard** App  has:
 
 1. Two if statements.
 
-2. One for-in loop. 
+2. One for-in loop statement. 
 
 3. One .push() method.
 
@@ -49,11 +47,15 @@ World Population Dashboard uses an HTML/CSS/JS app that accesses data from a db.
 
 7. One PATCH method.
 
-Challenges
+**Challenges**
 
- 1. Write a clean code.
+ 1. Write a clean code
 
- 2. Add a flag to the country cards using the PATCH method.
+ 2. Add a flag to the country cards making a patch request.
 
- 3. Deployment (not mandatory).
+ 3. Deployment (not mandatory)
+ 
+ 4. Responsive design.
+
+
 

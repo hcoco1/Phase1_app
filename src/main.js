@@ -1,19 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-  const themeSelect = document.querySelector('#theme-select');
+  const themeSelect = document.querySelector("#theme-select");
 
   function setTheme(theme) {
     document.body.className = theme;
   }
-  
-  themeSelect.addEventListener('change', () => {
-    if (themeSelect.value === 'dark') {
-      setTheme('dark');
+
+  themeSelect.addEventListener("change", () => {
+    if (themeSelect.value === "dark") {
+      setTheme("dark");
     } else {
-      setTheme('light');
+      setTheme("light");
     }
   });
-
 
   //get all countries
   fetch("http://localhost:3000/countries")
@@ -22,118 +20,135 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //declare all variables.
   const output = document.querySelector("#output");
+  const flagURL = document.querySelector(".input-text");
   const filterForm = document.querySelector("#create-task-form");
-  const addFlagForm = document.querySelector("#add-country-flag");
+  const addFlagForm = document.querySelector("form");
   const inputBoxSearch = document.querySelector("#new-task-description");
   const sortBy = document.getElementById("sort-by");
-  const countryList = document.getElementById("country-list");
   const arrayCountries = [];
-  
- 
 
   // handle and display countries
   function handleData(countries) {
     output.innerHTML = "";
     for (const key in countries) {
       arrayCountries.push(countries[key]);
-      let countryCard = document.createElement("li");
+      const countryCard = document.createElement("li");
       countryCard.className = "card";
-      let divCard = document.createElement("div");
+      const divCard = document.createElement("div");
       divCard.className = "cardContent";
-      let countryTitle = document.createElement("h2");
+
+      const countryTitle = document.createElement("h2");
       countryTitle.textContent = countries[key].country;
-      let countryImage = document.createElement("img");
+      const countryImage = document.createElement("img");
       countryImage.className = "country-avatar";
       countryImage.src = countries[key].flagUrl;
-      let populationTitle = document.createElement("h5");
-      populationTitle.textContent = `Population: ${countries[
+
+      const populationTitle = document.createElement("h5");
+      populationTitle.textContent = `According to 2023 data, the total population of ${
+        countries[key].country
+      } is ${countries[
         key
-      ].population.toLocaleString()} habitants`;
-      let areaTitle = document.createElement("h5");
-      areaTitle.textContent = `Area: ${countries[
+      ].population.toLocaleString()} inhabitants, with ${countries[
         key
-      ].area_in_Square_Kilometers.toLocaleString()} square kilometers`;
-      let malePopu = document.createElement("h5");
-      malePopu.textContent = `Male Population: ${countries[
+      ].male_population.toLocaleString()} men and ${countries[
         key
-      ].male_population.toLocaleString()} men `;
-      let femaPopu = document.createElement("h5");
-      femaPopu.textContent = `Female Population: ${countries[
+      ].female_population.toLocaleString()} women. ${
+        countries[key].country
+      } has an area of ${countries[
         key
-      ].female_population.toLocaleString()} women`;
-      let commenbox = document.createElement("h5");
+      ].area_in_Square_Kilometers.toLocaleString()} square kilometers.
+      `;
+      const commenbox = document.createElement("h5");
+      const ulComment = document.createElement("ul");
+      ulComment.className = "comments";
+      const liComment = document.createElement("li");
+      liComment.className = "comments";
+      const titleComment = document.createElement("h4");
+      titleComment.className = "title-comments";
       document.querySelector("#output").appendChild(countryCard);
       countryCard.appendChild(divCard);
       divCard.appendChild(countryTitle);
       divCard.appendChild(countryImage);
       divCard.appendChild(populationTitle);
-      divCard.appendChild(malePopu);
-      divCard.appendChild(femaPopu);
-      divCard.appendChild(areaTitle);
-      divCard.appendChild(commenbox);
-
-      //eventlistener (click on a flag) to show the input to leave a message on the countryCard
-      countryImage.addEventListener("click", (e) => {
-        let inputContainer = document.createElement("div");
-        inputContainer.className = "input-container";
-        countryCard.appendChild(inputContainer);
-        const submitInput = document.createElement("input");
-        const commentForm = document.createElement("form");
-        const input = document.createElement("input");
-        input.type = "text";
-        input.placeholder = "Leave a message";
-        input.className = "vcard";
-        submitInput.type = "submit";
-        submitInput.value = "ClickMe";
-        submitInput.className = "vcard";
-        divCard.appendChild(inputContainer);
-        inputContainer.appendChild(commentForm);
-        commentForm.appendChild(input);
-        commentForm.appendChild(submitInput);
-        console.log(commentForm);
-        console.log(submitInput);
-
-        //eventlistener (nested?) to leave a message on the countryCard
-        //ISSUES: the first message disapear if you leave a second message.
-        submitInput.addEventListener("click", (e) => {
-          e.preventDefault();
-          console.log(input.value);
-          commenbox.className = "box";
-          commenbox.textContent = input.value;
-          commentForm.style.display = "none";
-        });
+      const ulFinalMessage = document.createElement("ul");
+      ulFinalMessage.className = "ul-final-Message";
+      const liFinalMessage = document.createElement("li");
+      liFinalMessage.className = "li-final-Message";
+      const pFinalMessage = document.createElement("p");
+      pFinalMessage.className = "p-final-Message";
+      const commenForm = document.createElement("form");
+      commenForm.className = "comments-form";
+      const textarea = document.createElement("textarea");
+      textarea.name = "message"; // set the name attribute
+      textarea.rows = 4;
+      textarea.placeholder = "Type your message here...";
+      textarea.className = "comment-area";
+      textarea.rows = 1;
+      const br = document.createElement("br");
+      const submitBtn = document.createElement("input");
+      submitBtn.type = "submit";
+      submitBtn.value = "Submit";
+      submitBtn.name = "submitInfo";
+      submitBtn.id = "submitcomments";
+      divCard.appendChild(commenForm);
+      divCard.appendChild(pFinalMessage);
+      divCard.appendChild(ulFinalMessage);
+      ulFinalMessage.appendChild(liFinalMessage);
+      commenForm.appendChild(textarea);
+      commenForm.appendChild(submitBtn);
+      // Add an event listener
+      commenForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        console.log(e);
+        const message = textarea.value;
+        console.log(message);
+        pFinalMessage.textContent = `User Messages:`;
+        liFinalMessage.style.listStyle = "disc";
+        liFinalMessage.innerText = `${textarea.value}`;
       });
     }
   }
 
-  //FILTER A COUNTRY
-  filterForm.addEventListener("click", (e) => {
+  //FILTER COUNTRIES
+  // Filter an array of country objects by the given property and displays the sorted results.
+  function filterCountry(property, dattaArray) {
+    // Clear the previous results.
     output.innerHTML = "";
-    e.preventDefault();
+    console.log(output);
     let itemText = inputBoxSearch.value;
-    arrayCountries.forEach((o) => {
+    // filter the array of countries by the selected property.
+    dattaArray.forEach((o) => {
       if (o.country.toLowerCase() === itemText.toLowerCase()) {
-        output.innerHTML = "";
+        // Display the filtered results.
         handleData([o]);
       }
     });
+  }
+
+  // Add an event listener to the "submit" event of the sorting dropdown.
+  filterForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    // Get the selected property from the dropdown.
+    const selectedProperty = event.target.value;
+
+    // Sort the countries by the selected property and display the sorted results.
+    filterCountry(selectedProperty, arrayCountries);
   });
 
   //SORT COUNTRIES
   //ISSUES: THIS FUNCTION CREATE A NEW ARRAY EVERY CLICK UNTIL THE BROWSER CRASH (AND SHOW REPEATED COUNTRYCARDS)
-  // CODE 80% CHAT GPT, 20% IVAN
+
   // Sorts an array of country objects by the given property and displays the sorted results.
   function sortCountries(property, dataArray) {
     // Clear the previous results.
-    document.querySelector("#output").innerHTML = "";
-
+    output.innerHTML = "";
+    
     // Sort the array of countries by the selected property.
-    dataArray.sort((a, b) => {
+    dataArray.sort((b, a) => {
       if (a[property] < b[property]) return -1;
       if (a[property] > b[property]) return 1;
       return 0;
     });
-
     // Display the sorted results.
     handleData(dataArray);
   }
@@ -143,38 +158,34 @@ document.addEventListener("DOMContentLoaded", () => {
     // Get the selected property from the dropdown.
     const selectedProperty = event.target.value;
 
-    // Ensure that the selected property is a valid property of a country object.
-    const validProperties = Object.keys(arrayCountries[0]);
-    if (!validProperties.includes(selectedProperty)) {
-      console.error(`Invalid property selected: ${selectedProperty}`);
-      return;
-    }
-
     // Sort the countries by the selected property and display the sorted results.
     sortCountries(selectedProperty, arrayCountries);
   });
 
   //ADD FLAGS
-  //ISSUES: I DONT HAVE IDEA  HOW TO ADD A FLAG TO WHATEVER COUNTRY
-  //LOOKS LIKE THE COUNTRIES ARRAY IS NOT AVALIABLE IN THIS SCOPE. SHOULD I CREATE A OUTER SCOPE VARIABLE? ASK INSTRUCTORS
-  //THE VIDEO ON CANVAS(PATCH IS NOT HELPING ME, IS DIFFERENT CONTEXT.)
-  let submitBtn = document.getElementsByName("submit")[0];
-  let nameInput = document.getElementsByName("name")[0];
-  let imageInput = document.getElementsByName("image")[0];
 
-  submitBtn.addEventListener("submit", (e) => {
-    console.log(e);
-    e.preventDefault();
-    fetch(`http://localhost:3000/countries/${arrayCountries[id]}`, {
+  function addFlags() {
+    console.log(arrayCountries.id);//UNDEFINED WHY??
+    fetch(`http://localhost:3000/countries${arrayCountries.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-
       body: JSON.stringify({
-        flagUrl: imageInput.value,
+        country: addFlagForm[1].value,
+        flagUrl: addFlagForm[2].value,
       }),
     });
+  }
+
+  document.querySelector("form").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    console.log(addFlagForm); //is working
+    console.log(addFlagForm[0].value); //is working
+    console.log(addFlagForm[1].value); //is working
+    console.log(addFlagForm[2].value); //is working
+    addFlags();
   });
 });

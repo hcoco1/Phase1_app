@@ -4,12 +4,17 @@
   box-sizing: border-box;
 }
 
+
+li {
+  list-style: none;
+}
+
 input[type="text"],
 select {
   background-image: url("searchicon.png");
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin-right: 8px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -21,7 +26,7 @@ input[type="submit"] {
   background-color: #4caf50;
   color: white;
   padding: 14px 20px;
-  margin: 8px 0;
+  margin-right: 8px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -30,6 +35,8 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: #45a049;
 }
+
+
 
 
 
@@ -49,7 +56,7 @@ button {
 .box {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: larger;
-  color: #45a049;
+  color: #465c47;
 }
 
 h1 {
@@ -57,8 +64,11 @@ h1 {
   font-weight: normal;
 }
 h5 {
-  text-align: left;
-  margin-left: 15%;
+  text-align: justify;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  line-height: 2;
 }
 
 
@@ -90,7 +100,13 @@ h5 {
 
 .country-avatar {
   justify-self: center;
-  height: 10rem;
+  height: 8rem;
+  width: auto;
+}
+
+.country-avatar-after {
+  justify-self: center;
+  height: 5rem;
   width: auto;
 }
 
@@ -105,6 +121,64 @@ h5 {
   box-shadow: 3px 4px #7d9c90;
   background-color: #ffffe2;
 }
+
+
+.comment-area {
+  width: 60%;
+  height: 50px;
+  padding: 10px;
+  outline: 0;
+  border: 3px solid #1c87c9;
+  background: #d0e2bc;
+  line-height: 20px;
+}
+
+#submitcomments {
+  width: 20%;
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 10px;
+  margin-left: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+form {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-comments {
+  text-align: left;
+  margin-left: 15%;
+}
+
+.li-final-Message {
+  text-align: left;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 0;
+  color: #22678e;
+  font-weight: 700;
+}
+.input-container {
+  display:-ms-inline-grid
+}
+
+.p-final-Message {
+  color: #4caf50;
+  font-weight: 1000;
+ text-align: left;
+ margin-left: 5%;
+  
+}
+
+
+
+
+
+
 
 /* Light Theme */
 body {
