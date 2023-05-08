@@ -7,6 +7,11 @@
 li {
   list-style: none;
 }
+header {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
 input[type="text"],input[type="number"],
 select {
@@ -35,7 +40,7 @@ input[type="submit"]:hover {
 }
 
 #theme-select {
-  width: 10%;
+  width: 60%;
 }
 
 button {

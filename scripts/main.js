@@ -32,8 +32,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const addcountryForm = document.querySelector("#add-country");
   const inputBoxSearch = document.querySelector("#new-task-description");
   const sortBy = document.getElementById("sort-by");
+  const allBtn = document.querySelector("#allBtn");
   const arrayCountries = [];
   console.log(arrayCountries);
+
+  allBtn.addEventListener('click', ()=> {
+    handleData(arrayCountries)
+  })
 
   // handle and display countries
   function handleData(countries) {
@@ -127,12 +132,12 @@ document.addEventListener("DOMContentLoaded", () => {
         commentDeleteBtn.className = "commentBtn";
 
         
-        //debugger
+       
         // append data to the array
         const arrayMessages = [...arrayCountries[key].message];
         arrayCountries[key].message.push(textarea.value)
         arrayMessages.push(textarea.value);
-//debugger
+
         for (i = 0; i < arrayMessages.length; i++) {
           liFinalMessage.textContent = arrayMessages[i];
 
@@ -230,9 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
         message: [],
       }),
     });
-    setTimeout(function () {
-      location.reload();
-    }, 4000);
+
   });
 
   //FILTER COUNTRIES
@@ -240,6 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function filterCountry(property, dattaArray) {
     output.innerHTML = "";
     //console.log(output);
+    
     let itemText = inputBoxSearch.value;
     // filter the array of countries by the selected property.
     dattaArray.forEach((o) => {
@@ -247,9 +251,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Display the filtered results.
         handleData([o]);
         // Refresh the page after a delay of 3 seconds
-        setTimeout(function () {
-          location.reload();
-        }, 7000);
+
+        
+
       }
     });
   }

@@ -11,17 +11,17 @@
     <title>hcoco1</title>
   </head>
   <header>
-    <div>
+    <div id="theme">
     <label for="theme-select">Choose a theme:</label>
     <select id="theme-select">
       <option value="light">Light</option>
       <option value="dark">Dark</option>
     </select>
-
-      <div>
-
-    </div>
   </div>
+      <div id="btn">
+<button id="allBtn">GET ALL COUNTRIES</button>
+    </div>
+  
 
   </header>
   <body>
@@ -45,8 +45,7 @@
             value="" placeholder="total population..." class="input-text"
             /required>
             <br />
-            <input type="number" name="area" value="" placeholder="total area in
-            km2..." class="input-text" /required>
+            <input type="number" name="area" value="" placeholder="total area in km2..." class="input-text" /required>
             <br />
           </form>
         </div>
@@ -60,7 +59,7 @@
                 id="new-task-description"
                 name="new-task-description"
                 placeholder="search by name..."
-              />
+              /required>
             </form>
           </div>
 
