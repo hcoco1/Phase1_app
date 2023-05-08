@@ -8,7 +8,7 @@ li {
   list-style: none;
 }
 
-input[type="text"],
+input[type="text"],input[type="number"],
 select {
   width: 120%;
   padding: 12px 20px;
@@ -47,6 +47,18 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
+
+.delete {
+ display:block;
+  width: 4%;
+  height: 20%;
+  background-color: #c0103f;
+  color: white;
+  padding: 1px 1px;
+  margin-top: 7rem;
+  border-radius: 3px;
+
+}
 .box {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: larger;
@@ -68,6 +80,7 @@ h5 {
 .container {
   padding: 5px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   justify-items: center;
@@ -76,13 +89,20 @@ h5 {
   width: 100%;
 }
 #one {
-  width: 40%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
+#twoandthree {
+display: flex;
+margin-top: 2%;
+}
+
 #two {
-  width: 30%;
+  width: 50%;
 }
 #three {
-  width: 20%;
+  width: 50%;
   margin-right: 4%;
 }
 
@@ -124,6 +144,16 @@ h5 {
   border: 3px solid #1c87c9;
   background: #d0e2bc;
   line-height: 20px;
+}
+
+.commentBtn {
+  width: 4%;
+  height: 20%;
+  background-color: #102ac0;
+  color: white;
+  padding: 1px 1px;
+  margin-left: 2%;
+  border-radius: 3px;
 }
 
 #submitcomments {

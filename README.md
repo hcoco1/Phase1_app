@@ -25,11 +25,13 @@ Project Structure
 
 2. An event listener with a submit event toggling dark/light mode. 
 
-3. An event listener with a click event to show an input.
+3. An event listener with a click event to delete a country.
+
+4. An event listener with a click event to leave a message.
 
 4. An event listener with a change event to sort an array of objects.
 
-5. An event listener with a submit event to add flags making a patch request.
+5. An event listener with a submit event to add new countries.
 
 **World Population Dashboard** App  has:
 
@@ -46,14 +48,16 @@ Project Structure
 6. One GET method.
 
 7. One PATCH method.
+   
+8. One POST method.
+
+9. One DELETE method.
 
 **Challenges**
 
  1. Write a clean code
 
- 2. Add a flag to the country cards making a patch request.
-
- 3. Deployment (not mandatory)
+ 2. Deployment (not mandatory)
  
  4. Responsive design.
 

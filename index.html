@@ -8,10 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/mobile.css" />
-       <title>hcoco1</title>
+    <title>hcoco1</title>
   </head>
   <header>
-    
     <label for="theme-select">Choose a theme:</label>
     <select id="theme-select">
       <option value="light">Light</option>
@@ -19,59 +18,53 @@
     </select>
   </header>
   <body>
-
     <h1>World population Dashboard</h1>
 
     <header>
       <div class="container">
         <div id="one">
-          <form id="add-country-flag">
+          <form id="add-country" action="#" method="POST">
             <input
               type="submit"
               name="submit"
-              value="Add a flag"
+              value="Add a New Country"
               class="submit"
             />
-            <input
-              type="text"
-              name="name"
-              value=""
-              placeholder="country name..."
-              class="input-text"
-            />
             <br />
-            <input
-              type="text"
-              name="image"
-              value=""
-              placeholder="flag URL..."
-              class="input-text"
-            />
+            <input type="text" name="country name" value="" placeholder="country name..." class="input-text" /required>
+            <br />
+            <input type="text" name="url" value="" placeholder="flag img URL..."
+            class="input-text" /required> <input type="number" name="population"
+            value="" placeholder="total population..." class="input-text"
+            /required>
+            <br />
+            <input type="number" name="area" value="" placeholder="total area in
+            km2..." class="input-text" /required>
             <br />
           </form>
         </div>
-        <div id="two">
-          <form id="create-task-form" action="#" method="POST">
-            <label for="new-task-description"></label>
-            <input type="submit" value="Search" />
-            <input
-              type="text"
-              id="new-task-description"
-              name="new-task-description"
-              placeholder="country name..."
-            />
-          </form>
-        </div>
-        <div id="three">
-          <label for="sort-by"></label>
-          <select id="sort-by">
-            <option value="id">Sort By ID</option>
-            <option value="country">Sort By Country</option>
-            <option value="area_in_Square_Kilometers">Sort By Area</option>
-            <option value="population">Sort By Population</option>
-            <option value="male_population">Sort By Male Population</option>
-            <option value="female_population">Sort By Female Population</option>
-          </select>
+        <div id="twoandthree">
+          <div id="two">
+            <form id="create-task-form" action="#" method="">
+              <label for="new-task-description"></label>
+              <input type="submit" value="Search" />
+              <input
+                type="text"
+                id="new-task-description"
+                name="new-task-description"
+                placeholder="search by name..."
+              />
+            </form>
+          </div>
+
+          <div id="three">
+            <label for="sort-by"></label>
+            <select id="sort-by">
+              <option value="country">Sort By Country</option>
+              <option value="area_in_Square_Kilometers">Sort By Area</option>
+              <option value="population">Sort By Population</option>
+            </select>
+          </div>
         </div>
       </div>
     </header>
@@ -83,5 +76,5 @@
     </main>
   </body>
   <footer></footer>
-  <script src="/src/main.js" charset="utf-8"></script>
+  <script src="/src/main copy.js" charset="utf-8"></script>
 </html>
