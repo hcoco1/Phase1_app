@@ -17,7 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("https://world-population-dashboard.onrender.com/countries")
     .then((res) => res.json())
     .then((countries) => {
-      console.log(typeof countries);
+      console.log(countries);
+
       countries.forEach((country) => {
         arrayCountries.push(country);
       });
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputBoxSearch = document.querySelector("#new-task-description");
   const sortBy = document.getElementById("sort-by");
   const arrayCountries = [];
+  console.log(arrayCountries);
 
   // handle and display countries
   function handleData(countries) {
@@ -66,16 +68,13 @@ document.addEventListener("DOMContentLoaded", () => {
         key
       ].area_in_Square_Kilometers.toLocaleString()} square kilometers.
       `;
-      //create list to show messages
-      //const ulFinalMessage = document.createElement("ul");
+      //create buttom to delete comments
+      const commentDeleteBtn = document.createElement("button");
+      //CREATE UL ELEMTENT
+      const ulFinalMessage = document.createElement("ul");
+      ulFinalMessage.className = "ul-final-Message";
 
-      //const liFinalMessage = document.createElement("li");
-      //liFinalMessage.className = "li-final-Message";
-      //const commentDeleteBtn = document.createElement("button");
-      //commentDeleteBtn.textContent = "X";
-      //commentDeleteBtn.className = "commentBtn";
-
-      //form for leave messages
+      //form to leave messages
       const commenForm = document.createElement("form");
       commenForm.action = "#";
       commenForm.method = "PATCH";
@@ -102,9 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       divCard.appendChild(countryTitle);
       divCard.appendChild(countryImage);
       divCard.appendChild(populationTitle);
-
       commDiv.appendChild(commenForm); //appending the comment form to the comment div
-
       commenForm.appendChild(textarea);
       commenForm.appendChild(submitBtn);
 
@@ -119,37 +116,48 @@ document.addEventListener("DOMContentLoaded", () => {
       function leaveMessages(e) {
         // prevent default form submission behavior
         e.preventDefault();
-        console.log(e);
-        const ulFinalMessage = document.createElement("ul");
-        ulFinalMessage.className = "ul-final-Message";
+        
+        console.log(e.target);
+
+        //Creatin ul and li elements COMMENTS
+
         const liFinalMessage = document.createElement("li");
-        const messages = countries
-          .map((country) => country.message[0])
-          .filter((message) => message !== undefined && message !== null);
+        liFinalMessage.className = "li-final-Message";
+        commentDeleteBtn.textContent = "X";
+        commentDeleteBtn.className = "commentBtn";
 
-        console.log(typeof messages);
+        
+        //debugger
+        // append data to the array
+        const arrayMessages = [...arrayCountries[key].message];
+        arrayCountries[key].message.push(textarea.value)
+        arrayMessages.push(textarea.value);
+//debugger
+        for (i = 0; i < arrayMessages.length; i++) {
+          liFinalMessage.textContent = arrayMessages[i];
 
-        messages.forEach((message) => {
-          const liFinalMessage = document.createElement("li");
-          liFinalMessage.innerHTML = message;
-        });
-        console.table(messages);
-        ulFinalMessage.appendChild(liFinalMessage);
-        commDiv.appendChild(ulFinalMessage);
+          ulFinalMessage.appendChild(liFinalMessage); //Appending HTML li to the ul
+          liFinalMessage.appendChild(commentDeleteBtn); //Appending the delete button to the li
+          commDiv.appendChild(ulFinalMessage); //Appending HTML ul to the comments div.
+        }
+        //console.log(arrayMessages)
 
         if (!textarea.value) {
           alert("Please enter a message");
           return;
         }
         //-----------------------------------------------------------------------
-        fetch(`https://world-population-dashboard.onrender.com/countries/${countries[key].id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({ message: [textarea.value] }),
-        })
+        fetch(
+          `https://world-population-dashboard.onrender.com/countries/${countries[key].id}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({ message: arrayMessages }),
+          }
+        )
           .then((res) => res.json())
           .then((updatedPatch) => console.table(updatedPatch))
           .catch((error) => {
@@ -164,35 +172,40 @@ document.addEventListener("DOMContentLoaded", () => {
       function deleteCountryCard(e) {
         e.preventDefault();
         e.target.parentNode.remove();
-        fetch(`https://world-population-dashboard.onrender.com/countries/${countries[key].id}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        })
+        fetch(
+          `https://world-population-dashboard.onrender.com/countries/${countries[key].id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          }
+        )
           .then((res) => res.json())
           .then((updateCountries) => console.table(updateCountries));
       }
 
-      /*       commentDeleteBtn.addEventListener("click", deleteComment);
+      commentDeleteBtn.addEventListener("click", deleteComment);
       function deleteComment(e) {
         e.preventDefault();
-         // I don't know how to do it!!!
+        // I don't know how to do it!!!
         commentDeleteBtn.textContent = "";
 
-
-        fetch(`http://localhost:3000/countries/${countries[key].id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({ message: [] }),
-        })
+        fetch(
+          `https://world-population-dashboard.onrender.com/countries/${countries[key].id}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({ message: [] }),
+          }
+        )
           .then((res) => res.json())
           .then((updateCountries) => console.table(updateCountries));
-      } */
+      }
     }
   }
 
