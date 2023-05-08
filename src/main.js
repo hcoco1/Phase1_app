@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //get all countries
-  fetch("http://localhost:3000/countries")
+  fetch("https://world-population-dashboard.onrender.com/countries")
     .then((res) => res.json())
     .then((countries) => {
       console.log(typeof countries);
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
         //-----------------------------------------------------------------------
-        fetch(`http://localhost:3000/countries/${countries[key].id}`, {
+        fetch(`https://world-population-dashboard.onrender.com/countries/${countries[key].id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
       function deleteCountryCard(e) {
         e.preventDefault();
         e.target.parentNode.remove();
-        fetch(`http://localhost:3000/countries/${countries[key].id}`, {
+        fetch(`https://world-population-dashboard.onrender.com/countries/${countries[key].id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //An evenlistener to add a new country
   addcountryForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    fetch("http://localhost:3000/countries", {
+    fetch("https://world-population-dashboard.onrender.com/countries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -217,6 +217,9 @@ document.addEventListener("DOMContentLoaded", () => {
         message: [],
       }),
     });
+    setTimeout(function () {
+      location.reload();
+    }, 4000);
   });
 
   //FILTER COUNTRIES

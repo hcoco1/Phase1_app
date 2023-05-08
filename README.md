@@ -57,9 +57,9 @@ Project Structure
 
  1. Write a clean code
 
- 2. Deployment (not mandatory)
+ 2. Deployment. Render (https://world-population-dashboard.onrender.com)
  
- 4. Responsive design.
+ 4. Responsive design (Adding a mobile style css file)
 
 
 
