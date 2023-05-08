@@ -51,7 +51,7 @@ Project Structure
    
 8. One POST method.
 
-9. One DELETE method.
+9. Two DELETE method.
 
 **Challenges**
 
