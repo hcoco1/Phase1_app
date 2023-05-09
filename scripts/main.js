@@ -95,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
       textarea.placeholder = "Type your message here...";
       textarea.className = "comment-area";
       textarea.rows = 1;
+      textarea.required = true;
 
       //submit button for leave comments
       const submitBtn = document.createElement("input");
@@ -106,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
       //AppendChild card elemts
       document.querySelector("#output").appendChild(countryCard);
       //countryCard.appendChild(); //div for info
+      countryCard.appendChild(utilityDiv); //div for info
       countryCard.appendChild(utilityDiv); //div for info
       countryCard.appendChild(commDiv); //div for info
 
