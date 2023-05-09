@@ -1,52 +1,86 @@
 @media (max-width: 700px) {
+  #one {
+    display: flex;
+    flex: 100%;
+    padding: 10px;
+    flex-wrap: wrap;
+  }
 
-    #one {
-      flex:1;
+  #add-country {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1%;
+  }
 
-      width: 500px;
-      margin: 5%
-    }
-    #two {
-        
-      width: 500px;
-      margin: 5%
-    }
-    #three {
-       
-      width: 500px;
-      margin: 5%
-    }
-    #theme-select {
-        width: 30%;
-      }
+  #create-task-form {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2%;
+    margin: 2%;
+  }
 
-      .card {
-   
-        width: 20rem;
-        
- 
-      }
-      #output {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        justify-items: center;
-        margin-right: 10%;
-        
-      }
+  #new-task-description {
+    padding: 4%;
+    margin: 2%;
+  }
 
-      .comment-area {
-        width: 60%;
-        height: 70px;
-        padding: 10px;
-        outline: 0;
-        border: 3px solid #1c87c9;
-        background: #d0e2bc;
-        line-height: 20px;
-      }
+  input[type="submit"] {
+    width: 90%;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 16px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 
-      h5 {
-        font-size: 0.73em;
-      }
+  #country-name,
+  #url,
+  #population,
+  #area {
+    padding: 2%;
+    margin: 2%;
+  }
+
+  #three {
+    width: 40%;
+  }
+
+  #twoandthree {
+    display: flex;
+    flex: 50%;
+    padding: 10px;
+  }
+
+  #theme-select {
+    display: flex;
+    width: 90%;
+  }
+
+  .card {
+    width: 20rem;
+  }
+  #output {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    margin-right: 10%;
+  }
+
+  .comment-area {
+    width: 60%;
+    height: 70px;
+    padding: 10px;
+    outline: 0;
+    border: 3px solid #1c87c9;
+    background: #d0e2bc;
+    line-height: 20px;
+  }
+
+  h5 {
+    font-size: 0.73em;
+  }
 }
