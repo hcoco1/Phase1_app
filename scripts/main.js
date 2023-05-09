@@ -23,22 +23,32 @@ document.addEventListener("DOMContentLoaded", () => {
         arrayCountries.push(country);
       });
       handleData(countries);
-      //console.table(arrayCountries);
+      console.table(arrayCountries);
     });
 
   //declare all variables.
   const output = document.querySelector("#output"); // ul list container, parent of li class="card"
   const filterForm = document.querySelector("#create-task-form");
   const addcountryForm = document.querySelector("#add-country");
-  const inputBoxSearch = document.querySelector("#new-task-description");
-  const sortBy = document.getElementById("sort-by");
-  const allBtn = document.querySelector("#allBtn");
-  const arrayCountries = [];
-  console.log(arrayCountries);
+  const allBtn = document.querySelector("#allButton")
+  /*
+  const addcountryName = document.querySelector("#country-name");
+  const addcountryUrl = document.querySelector("#url");
+  const addcountryPopulation = document.querySelector("#population");
+  const addcountryArea = document.querySelector("#area");
+*/
 
-  allBtn.addEventListener('click', ()=> {
-    handleData(arrayCountries)
-  })
+  const inputBoxSearch = document.querySelector("#new-task-description");
+
+  const sortBy = document.getElementById("sort-by");
+  const successMessage = document.querySelector("#alert");
+
+  const arrayCountries = [];
+
+  allBtn.addEventListener("click", () => {
+    
+    handleData(arrayCountries);
+  });
 
   // handle and display countries
   function handleData(countries) {
@@ -121,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
       function leaveMessages(e) {
         // prevent default form submission behavior
         e.preventDefault();
-        
+
         console.log(e.target);
 
         //Creatin ul and li elements COMMENTS
@@ -131,16 +141,13 @@ document.addEventListener("DOMContentLoaded", () => {
         commentDeleteBtn.textContent = "X";
         commentDeleteBtn.className = "commentBtn";
 
-        
-       
         // append data to the array
         const arrayMessages = [...arrayCountries[key].message];
-        arrayCountries[key].message.push(textarea.value)
+        arrayCountries[key].message.push(textarea.value);
         arrayMessages.push(textarea.value);
 
         for (i = 0; i < arrayMessages.length; i++) {
           liFinalMessage.textContent = arrayMessages[i];
-
           ulFinalMessage.appendChild(liFinalMessage); //Appending HTML li to the ul
           liFinalMessage.appendChild(commentDeleteBtn); //Appending the delete button to the li
           commDiv.appendChild(ulFinalMessage); //Appending HTML ul to the comments div.
@@ -164,7 +171,9 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         )
           .then((res) => res.json())
-          .then((updatedPatch) => console.table(updatedPatch))
+          .then((updatedPatch) => {
+            console.table(updatedPatch);
+          })
           .catch((error) => {
             console.error(error);
             alert(
@@ -195,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
       function deleteComment(e) {
         e.preventDefault();
         // I don't know how to do it!!!
-        commentDeleteBtn.textContent = "";
+        e.target.parentNode.remove();
 
         fetch(
           `https://world-population-dashboard.onrender.com/countries/${countries[key].id}`,
@@ -234,16 +243,28 @@ document.addEventListener("DOMContentLoaded", () => {
         flagUrl: addcountryForm[2].value,
         message: [],
       }),
-    });
+    })
+      .then((response) => {
+        if (response.ok) {
+          successMessage.textContent = `${addcountryForm[1].value} added successfully!`;
+          // Clear the form
+        addcountryForm.reset();
+        } else {
+          console.log("Error adding country");
+        }
+      })
+      .catch((error) => {
+        console.error("Error adding country:", error);
+      });
 
+    
   });
 
   //FILTER COUNTRIES
   // Filter an array of country objects by the given property and displays the sorted results.
   function filterCountry(property, dattaArray) {
-    output.innerHTML = "";
     //console.log(output);
-    
+
     let itemText = inputBoxSearch.value;
     // filter the array of countries by the selected property.
     dattaArray.forEach((o) => {
@@ -251,15 +272,16 @@ document.addEventListener("DOMContentLoaded", () => {
         // Display the filtered results.
         handleData([o]);
         // Refresh the page after a delay of 3 seconds
-
-        
-
       }
+      inputBoxSearch.value = "";
     });
   }
 
   filterForm.addEventListener("submit", (event) => {
     event.preventDefault();
+
+    output.innerHTML = "";
+
     const selectedProperty = event.target.value;
     filterCountry(selectedProperty, arrayCountries);
   });

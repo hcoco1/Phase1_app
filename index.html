@@ -19,18 +19,19 @@
     </select>
   </div>
       <div id="btn">
-<button id="allBtn">GET ALL COUNTRIES</button>
+<button id="allButton">GET ALL COUNTRIES</button>
     </div>
   
 
   </header>
   <body>
     <h1>World population Dashboard</h1>
+    <h2 id="alert"></h2>
 
     <header>
       <div class="container">
         <div id="one">
-          <form id="add-country" action="#" method="POST">
+          <form autocomplete="off" id="add-country" action="#" method="POST">
             <input
               type="submit"
               name="submit"
@@ -38,14 +39,15 @@
               class="submit"
             />
             <br />
-            <input type="text" name="country name" value="" placeholder="country name..." class="input-text" /required>
+            <input id="country-name" type="text" name="country name" value="" placeholder="country name..." class="input-text" /required>
             <br />
-            <input type="text" name="url" value="" placeholder="flag img URL..."
-            class="input-text" /required> <input type="number" name="population"
+            <input id="url" type="text" name="url" value="" placeholder="flag img URL..."
+            class="input-text" /required>
+            <input id="population" type="number" name="population"
             value="" placeholder="total population..." class="input-text"
             /required>
             <br />
-            <input type="number" name="area" value="" placeholder="total area in km2..." class="input-text" /required>
+            <input id="area"type="number" name="area" value="" placeholder="total area in km2..." class="input-text" /required>
             <br />
           </form>
         </div>
