@@ -53,17 +53,7 @@ button {
   cursor: pointer;
 }
 
-.delete {
- display:block;
-  width: 4%;
-  height: 20%;
-  background-color: #c0103f;
-  color: white;
-  padding: 1px 1px;
-  margin-top: 7rem;
-  border-radius: 3px;
 
-}
 .box {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: larger;
@@ -80,6 +70,7 @@ h1 {
   font-weight: normal;
   color: #45a049;
 }
+
 h5 {
   text-align: justify;
   margin-left: 5%;
@@ -136,6 +127,8 @@ margin-top: 2%;
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   border: rgb(102, 89, 89) solid 1px;
   padding: 0;
@@ -146,6 +139,41 @@ margin-top: 2%;
   box-shadow: 3px 4px #7d9c90;
   background-color: #ffffe2;
 }
+.utility {
+  display:flex;
+  min-width: 0;
+  min-height: 0;
+  }
+  
+.cardContent {
+  min-width: 0;
+  min-height: 0;
+}
+
+.deleteBtnDiv{
+ 
+
+}
+.comment-div {
+  min-width: 0;
+  min-height: 0;
+  
+}
+.delete {
+  
+   background-color: #c0103f;
+   color: white;
+   padding: 1px 1px;
+   margin:0;
+   border-radius: 3px;
+ 
+ }
+
+
+
+
+
+
 
 .comment-area {
   width: 60%;
@@ -157,7 +185,7 @@ margin-top: 2%;
   line-height: 20px;
 }
 
-.commentBtn {
+.commentDeleteBtn {
   width: 4%;
   height: 20%;
   background-color: #102ac0;
@@ -188,7 +216,7 @@ form {
   margin-left: 15%;
 }
 
-.li-final-Message {
+.liFinalMessage {
   text-align: left;
   margin-left: 15%;
   margin-right: 15%;

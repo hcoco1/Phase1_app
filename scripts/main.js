@@ -30,23 +30,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const output = document.querySelector("#output"); // ul list container, parent of li class="card"
   const filterForm = document.querySelector("#create-task-form");
   const addcountryForm = document.querySelector("#add-country");
-  const allBtn = document.querySelector("#allButton")
-  /*
-  const addcountryName = document.querySelector("#country-name");
-  const addcountryUrl = document.querySelector("#url");
-  const addcountryPopulation = document.querySelector("#population");
-  const addcountryArea = document.querySelector("#area");
-*/
-
+  const allBtn = document.querySelector("#allButton");
   const inputBoxSearch = document.querySelector("#new-task-description");
-
   const sortBy = document.getElementById("sort-by");
   const successMessage = document.querySelector("#alert");
-
   const arrayCountries = [];
 
   allBtn.addEventListener("click", () => {
-    
     handleData(arrayCountries);
   });
 
@@ -54,17 +44,18 @@ document.addEventListener("DOMContentLoaded", () => {
   function handleData(countries) {
     output.innerHTML = "";
     for (const key in countries) {
-      //Delete button
+      //Delete button to get rid of country cards (one by one)
       const deleteBtn = document.createElement("button");
       deleteBtn.textContent = "X";
       deleteBtn.className = "delete";
-      //Eventlistener delete button
 
       //Country Cards structure
       const countryCard = document.createElement("li"); //li element that belong to (ul) output. Parent of div class="cardContain".
       countryCard.className = "card";
       const divCard = document.createElement("div"); // div that contains all the information about countries.Parent of h2, img, and h5. class= "cardContent"
       divCard.className = "cardContent";
+      const deleteBtnDiv = document.createElement("div"); //div that contains all elements about comments
+      deleteBtnDiv.className = "deleteBtnDiv";
       const commDiv = document.createElement("div"); //div that contains all elements about comments
       commDiv.className = "comment-div";
       const countryTitle = document.createElement("h2"); //child of divCard (class= "cardContent")
@@ -73,6 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
       countryImage.className = "country-avatar";
       countryImage.src = countries[key].flagUrl;
       const populationTitle = document.createElement("h5"); //child of divCard. Main text container
+
+      const utilityDiv = document.createElement("div"); //div that contains all elements about comments
+      utilityDiv.className = "utility";
 
       //Main text inside card.
       populationTitle.textContent = `According to 2023 data, the total population of ${
@@ -83,11 +77,12 @@ document.addEventListener("DOMContentLoaded", () => {
         key
       ].area_in_Square_Kilometers.toLocaleString()} square kilometers.
       `;
-      //create buttom to delete comments
-      const commentDeleteBtn = document.createElement("button");
-      //CREATE UL ELEMTENT
-      const ulFinalMessage = document.createElement("ul");
-      ulFinalMessage.className = "ul-final-Message";
+
+
+
+       //CREATE UL ELEMTENT
+       const ulFinalMessage = document.createElement("ul");
+       ulFinalMessage.className = "ul-final-Message";
 
       //form to leave messages
       const commenForm = document.createElement("form");
@@ -101,58 +96,64 @@ document.addEventListener("DOMContentLoaded", () => {
       textarea.className = "comment-area";
       textarea.rows = 1;
 
-      //submit button
+      //submit button for leave comments
       const submitBtn = document.createElement("input");
       submitBtn.type = "submit";
-      submitBtn.value = "Leave your Message";
+      submitBtn.value = "Submit";
       submitBtn.name = "submit";
       submitBtn.id = "submitcomments";
 
       //AppendChild card elemts
       document.querySelector("#output").appendChild(countryCard);
-      countryCard.appendChild(divCard); //div for info
-      countryCard.appendChild(commDiv); //div for comments
-      countryCard.appendChild(deleteBtn);
+      //countryCard.appendChild(); //div for info
+      countryCard.appendChild(utilityDiv); //div for info
+      countryCard.appendChild(commDiv); //div for info
+
+      utilityDiv.appendChild(divCard); //div for info
+      utilityDiv.appendChild(deleteBtnDiv); //div for comments
+      deleteBtnDiv.appendChild(deleteBtn);
+
+      
       divCard.appendChild(countryTitle);
       divCard.appendChild(countryImage);
       divCard.appendChild(populationTitle);
       commDiv.appendChild(commenForm); //appending the comment form to the comment div
-      commenForm.appendChild(textarea);
-      commenForm.appendChild(submitBtn);
+      commenForm.appendChild(textarea); //appending the textbox to the form
+      commenForm.appendChild(submitBtn); //appending the submit button to the form
 
-      //commDiv.appendChild(ulFinalMessage);
-      //ulFinalMessage.appendChild(liFinalMessage);
-      //liFinalMessage.appendChild(commentDeleteBtn);
-
-      // Add an event listener to leave a message---------------------------------------------
+      // Add an event listener to leave a message
       commenForm.addEventListener("submit", leaveMessages);
 
       //Function to leave comments.
       function leaveMessages(e) {
-        // prevent default form submission behavior
         e.preventDefault();
-
         console.log(e.target);
 
         //Creatin ul and li elements COMMENTS
 
         const liFinalMessage = document.createElement("li");
         liFinalMessage.className = "li-final-Message";
+       const commentDeleteBtn = document.createElement("button");
         commentDeleteBtn.textContent = "X";
-        commentDeleteBtn.className = "commentBtn";
+        commentDeleteBtn.className = "commentDeleteBtn";
+        
 
         // append data to the array
         const arrayMessages = [...arrayCountries[key].message];
         arrayCountries[key].message.push(textarea.value);
         arrayMessages.push(textarea.value);
 
+        //For loop to create a dinamic list
         for (i = 0; i < arrayMessages.length; i++) {
           liFinalMessage.textContent = arrayMessages[i];
           ulFinalMessage.appendChild(liFinalMessage); //Appending HTML li to the ul
           liFinalMessage.appendChild(commentDeleteBtn); //Appending the delete button to the li
           commDiv.appendChild(ulFinalMessage); //Appending HTML ul to the comments div.
+          commentDeleteBtn.addEventListener("click", deleteComment)
         }
-        //console.log(arrayMessages)
+      
+
+        console.log(arrayMessages);
 
         if (!textarea.value) {
           alert("Please enter a message");
@@ -183,9 +184,10 @@ document.addEventListener("DOMContentLoaded", () => {
       } //-------------------------------------------------------------------------------------------
 
       deleteBtn.addEventListener("click", deleteCountryCard);
+
       function deleteCountryCard(e) {
         e.preventDefault();
-        e.target.parentNode.remove();
+        e.target.parentNode.parentNode.parentNode.remove();
         fetch(
           `https://world-population-dashboard.onrender.com/countries/${countries[key].id}`,
           {
@@ -198,14 +200,13 @@ document.addEventListener("DOMContentLoaded", () => {
         )
           .then((res) => res.json())
           .then((updateCountries) => console.table(updateCountries));
+      
       }
+       
 
-      commentDeleteBtn.addEventListener("click", deleteComment);
       function deleteComment(e) {
         e.preventDefault();
-        // I don't know how to do it!!!
         e.target.parentNode.remove();
-
         fetch(
           `https://world-population-dashboard.onrender.com/countries/${countries[key].id}`,
           {
@@ -218,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         )
           .then((res) => res.json())
-          .then((updateCountries) => console.table(updateCountries));
+          .then((updateComments) => console.table(updateComments));
       }
     }
   }
@@ -248,7 +249,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (response.ok) {
           successMessage.textContent = `${addcountryForm[1].value} added successfully!`;
           // Clear the form
-        addcountryForm.reset();
+          addcountryForm.reset()
+          
+          setTimeout(function(){
+            window.location.reload();
+         }, 5000); 
+
         } else {
           console.log("Error adding country");
         }
@@ -256,8 +262,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((error) => {
         console.error("Error adding country:", error);
       });
-
-    
   });
 
   //FILTER COUNTRIES
@@ -309,7 +313,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Get the selected property from the dropdown.
-    const selectedProperty = event.target.value;
+    const selectedProperty = e.target.value;
 
     // Sort the countries by the selected property and display the sorted results.
     sortCountries(selectedProperty, arrayCountries);
