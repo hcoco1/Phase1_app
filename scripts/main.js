@@ -78,11 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
       ].area_in_Square_Kilometers.toLocaleString()} square kilometers.
       `;
 
-
-
-       //CREATE UL ELEMTENT
-       const ulFinalMessage = document.createElement("ul");
-       ulFinalMessage.className = "ul-final-Message";
+      //CREATE UL ELEMTENT
+      const ulFinalMessage = document.createElement("ul");
+      ulFinalMessage.className = "ul-final-Message";
 
       //form to leave messages
       const commenForm = document.createElement("form");
@@ -115,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
       utilityDiv.appendChild(deleteBtnDiv); //div for comments
       deleteBtnDiv.appendChild(deleteBtn);
 
-      
       divCard.appendChild(countryTitle);
       divCard.appendChild(countryImage);
       divCard.appendChild(populationTitle);
@@ -124,36 +121,43 @@ document.addEventListener("DOMContentLoaded", () => {
       commenForm.appendChild(submitBtn); //appending the submit button to the form
 
       // Add an event listener to leave a message
-      commenForm.addEventListener("submit", leaveMessages);
+      commenForm.addEventListener("submit", saveMessages);
 
+
+
+      function name(params) {
+        
+      }
       //Function to leave comments.
-      function leaveMessages(e) {
+      function saveMessages(e) {
         e.preventDefault();
         console.log(e.target);
 
         //Creatin ul and li elements COMMENTS
 
-        const liFinalMessage = document.createElement("li");
-        liFinalMessage.className = "li-final-Message";
-       const commentDeleteBtn = document.createElement("button");
-        commentDeleteBtn.textContent = "X";
-        commentDeleteBtn.className = "commentDeleteBtn";
-        
-
         // append data to the array
         const arrayMessages = [...arrayCountries[key].message];
+       
         arrayCountries[key].message.push(textarea.value);
         arrayMessages.push(textarea.value);
-
+        ulFinalMessage.textContent = "";
         //For loop to create a dinamic list
         for (i = 0; i < arrayMessages.length; i++) {
+
+          const liFinalMessage = document.createElement("li");
+          liFinalMessage.className = "li-final-Message";
+          const commentDeleteBtn = document.createElement("button");
+          commentDeleteBtn.textContent = "X";
+          commentDeleteBtn.className = "commentDeleteBtn";
+          commentDeleteBtn.setAttribute('data-id', `indonesia-i`)
+
           liFinalMessage.textContent = arrayMessages[i];
           ulFinalMessage.appendChild(liFinalMessage); //Appending HTML li to the ul
           liFinalMessage.appendChild(commentDeleteBtn); //Appending the delete button to the li
           commDiv.appendChild(ulFinalMessage); //Appending HTML ul to the comments div.
-          commentDeleteBtn.addEventListener("click", deleteComment)
+          commentDeleteBtn.addEventListener("click", deleteComment);
         }
-      
+        //Append something??
 
         console.log(arrayMessages);
 
@@ -202,12 +206,11 @@ document.addEventListener("DOMContentLoaded", () => {
         )
           .then((res) => res.json())
           .then((updateCountries) => console.table(updateCountries));
-      
       }
-       
 
       function deleteComment(e) {
         e.preventDefault();
+        console.log(e)
         e.target.parentNode.remove();
         fetch(
           `https://world-population-dashboard.onrender.com/countries/${countries[key].id}`,
@@ -251,12 +254,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (response.ok) {
           successMessage.textContent = `${addcountryForm[1].value} added successfully!`;
           // Clear the form
-          addcountryForm.reset()
-          
-          setTimeout(function(){
-            window.location.reload();
-         }, 5000); 
+          addcountryForm.reset();
 
+          setTimeout(function () {
+            window.location.reload();
+          }, 5000);
         } else {
           console.log("Error adding country");
         }
