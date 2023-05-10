@@ -133,7 +133,7 @@ margin-top: 2%;
   border: rgb(102, 89, 89) solid 1px;
   padding: 0;
   width: 25rem;
-  height: 35rem;
+  height: 45rem;
   display: inline-grid;
   margin: 1rem 1rem;
   box-shadow: 3px 4px #7d9c90;
@@ -184,7 +184,7 @@ height: min-content;
   line-height: 20px;
 }
 
-.commentDeleteBtn {
+.delete-btn {
   width: 4%;
   height: 20%;
   background-color: #102ac0;

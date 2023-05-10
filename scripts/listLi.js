@@ -13,34 +13,38 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.className = theme;
   }
 
+  //get all countries
+  fetch("https://world-population-dashboard.onrender.com/countries")
+    .then((res) => res.json())
+    .then((countries) => {
+      console.log(countries);
+
+      countries.forEach((country) => {
+        arrayCountries.push(country);
+      });
+      handleData(countries);
+
+      console.table(arrayCountries);
+    });
+
   //declare all variables.
-  const arrayCountries = [];
-  const allBtn = document.querySelector("#allButton");
   const output = document.querySelector("#output"); // ul list container, parent of li class="card"
   const filterForm = document.querySelector("#create-task-form");
   const addcountryForm = document.querySelector("#add-country");
+  const allBtn = document.querySelector("#allButton");
   const inputBoxSearch = document.querySelector("#new-task-description");
   const sortBy = document.getElementById("sort-by");
   const successMessage = document.querySelector("#alert");
+  const arrayCountries = [];
 
   allBtn.addEventListener("click", () => {
     handleData(arrayCountries);
   });
 
-  //get all countries
-  fetch("https://world-population-dashboard.onrender.com/countries")
-    .then((res) => res.json())
-    .then((countries) => {
-      countries.forEach((country) => {
-        arrayCountries.push(country);
-      });
-      handleData(countries);
-    });
-
   // handle and display countries
   function handleData(countries) {
-    //--------------------------------------------------------------------------------------------------------------------
     output.innerHTML = "";
+
     for (const key in countries) {
       //Delete button to get rid of country cards (one by one)
       const deleteBtn = document.createElement("button");
@@ -52,6 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
       countryCard.className = "card";
       const divCard = document.createElement("div"); // div that contains all the information about countries.Parent of h2, img, and h5. class= "cardContent"
       divCard.className = "cardContent";
+      const divList = document.createElement("div"); // div that contains all the information about countries.Parent of h2, img, and h5. class= "cardContent"
+      divList.className = "divList";
       const countryTitle = document.createElement("h2"); //child of divCard (class= "cardContent")
       countryTitle.textContent = countries[key].country;
       const countryImage = document.createElement("img"); //child of divCard (class= "cardContent")
@@ -70,8 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
 
       //CREATE UL ELEMTENT
-      let ulFinalMessage = document.createElement("ul");
-      ulFinalMessage.className = "ul-final-Message";
+      const resultUl = document.createElement("ul");
+      resultUl.className = "ul-final-Message";
 
       //form to leave messages
       const commenForm = document.createElement("form");
@@ -103,109 +109,42 @@ document.addEventListener("DOMContentLoaded", () => {
       divCard.appendChild(commenForm); //appending the comment form to the comment div
       commenForm.appendChild(textarea); //appending the textbox to the form
       commenForm.appendChild(submitBtn); //appending the submit button to the form
-      divCard.appendChild(ulFinalMessage); //Appending HTML ul to the comments div.
-      //displayMessages();
-
-      // Add an event listener to leave a message
-      commenForm.addEventListener("submit", saveMessages);
-
-      //function displayMessages() {}
-      //Function to leave comments.
-      function saveMessages(e) {
-        //------------------------------------------------------------------------------------------------
-        e.preventDefault();
-        console.log(e.target[0]);
+      divCard.appendChild(divList); //Appending HTML ul to the comments div.
+      divList.appendChild(resultUl); //Appending HTML ul to the comments div.
 
         // append data to the array
         const arrayMessages = [...arrayCountries[key].message];
         console.table(arrayMessages);
         arrayCountries[key].message.push(textarea.value);
-        console.table(arrayMessages);
         arrayMessages.push(textarea.value);
-        console.table(arrayMessages);
-        ulFinalMessage.textContent = ""; //don't delete
-        console.table(arrayMessages);
 
-        //For loop to create a dinamic list
-        //let resultUl = document.querySelector(".ul-final-Message");
-        let resultHtml = "";
-        arrayMessages.forEach((messa, index) => {
-          resultHtml += `
-            <li class="liFinalMessage">
-              <span>${messa}</span>
-              <button class="delete-btn" data-index="${index}">X</button>
-            </li>
-          `;
-        });
-        console.table(arrayMessages);
 
-        ulFinalMessage.innerHTML = resultHtml;
 
-        // Add event listener to delete buttons
-        const deleteBtns = document.querySelectorAll(".delete-btn");
-        deleteBtns.forEach((deleteBtn) => {
-          deleteBtn.addEventListener("click", deleteArrayElement);
-        });
+      
 
-        if (!textarea.value) {
-          alert("Please enter a message");
-          return;
-        }
-        textarea.value = "";
-        console.table(arrayMessages);
 
-        fetch(
-          `https://world-population-dashboard.onrender.com/countries/${countries[key].id}`,
-          {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            body: JSON.stringify({ message: arrayMessages }),
-          }
-        )
-          .then((res) => res.json())
-          .then((updatedPatch) => {
-            console.table(updatedPatch);
-          })
-          .catch((error) => {
-            console.error(error);
-            alert(
-              "An error occurred while submitting your message. Please try again later."
-            );
-          });
-        //----------------------------------------------------------------------------------------------------------------------------------
-        function deleteArrayElement(e) {
-          e.preventDefault();
-          //console.log(e);
-          e.target.parentNode.remove();
-          const index = e.target.dataset.index;
-          console.log(index);
 
-          arrayMessages.splice(index, 1);
 
-          fetch(
-            `https://world-population-dashboard.onrender.com/countries/${countries[key].id}`,
-            {
-              method: "PATCH",
-              headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-              },
-              body: JSON.stringify({ message: arrayMessages }),
-            }
-          )
-            .then((res) => res.json())
-            .then((updateComments) => console.table(updateComments));
-        }
-      } //----------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       deleteBtn.addEventListener("click", deleteCountryCard);
 
       function deleteCountryCard(e) {
         e.preventDefault();
-        e.target.parentNode.parentNode.remove();
+        e.target.parentNode.parentNode.parentNode.remove();
         fetch(
           `https://world-population-dashboard.onrender.com/countries/${countries[key].id}`,
           {
@@ -218,9 +157,79 @@ document.addEventListener("DOMContentLoaded", () => {
         )
           .then((res) => res.json())
           .then((updateCountries) => console.table(updateCountries));
-      } //---------------------------------------------------------------------------------------
+      }
+
+      function deleteComment(e) {
+        e.preventDefault();
+        console.log(textarea.value);
+        e.target.parentNode.remove();
+        console.table(arrayCountries[key].message);
+        const arrayMessages = [...arrayCountries[key].message];
+        console.table(arrayMessages);
+        //arrayCountries[key].message.push(textarea.value);
+        //arrayMessages.push(textarea.value);
+        const arrayMessagesDeleted = arrayMessages.filter(
+          (item) => item !== textarea.value
+        );
+        console.table(arrayMessagesDeleted);
+        //console.log(arrayCountries)
+
+        fetch(
+          `https://world-population-dashboard.onrender.com/countries/${countries[key].id}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({ message: arrayMessagesDeleted }),
+          }
+        )
+          .then((res) => res.json())
+          .then((updateComments) => console.table(updateComments));
+      }
     }
   }
+  
+  document.querySelector("#commenForm").addEventListener("submit", saveMessages);
+  
+       function saveMessages(){
+        e.preventDefault();
+        console.log(e);
+       }
+        
+
+        //Function to leave comments.
+        function displayArrayElements(e) {
+          e.preventDefault()
+          const resultUl = document.querySelector('.ul-final-Message');
+          let resultHtml = '';
+        
+          arrayMessages.forEach((messa, index) => {
+            resultHtml += `
+              <li>
+                <span>${messa}</span>
+                <button class="delete-btn" data-index="${index}">Delete</button>
+              </li>
+            `;
+          });
+        
+          resultUl.innerHTML = resultHtml;
+        
+          // Add event listener to delete buttons
+          const deleteBtns = document.querySelectorAll('.delete-btn');
+          deleteBtns.forEach(deleteBtn => {
+            deleteBtn.addEventListener('click', deleteArrayElement);
+          });
+        }
+  
+  
+        function deleteArrayElement(event) {
+          const index = event.target.dataset.index;
+          arrayMessages.splice(index, 1);
+          displayArrayElements();
+        }
+        
 
   //ADD NEW COUNTRY
 
@@ -264,6 +273,8 @@ document.addEventListener("DOMContentLoaded", () => {
   //FILTER COUNTRIES
   // Filter an array of country objects by the given property and displays the sorted results.
   function filterCountry(property, dattaArray) {
+    //console.log(output);
+
     let itemText = inputBoxSearch.value;
     // filter the array of countries by the selected property.
     dattaArray.forEach((o) => {
@@ -293,7 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (a[property] < b[property]) return -1;
       if (a[property] > b[property]) return 1;
       return 0;
-    });
+    }); //console.log(arrayCountries)
     // Display the sorted results.
 
     handleData(newvar);
@@ -303,6 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
   sortBy.addEventListener("change", (e) => {
     console.log(e.target.value);
     output.childNodes.forEach((li) => {
+      //console.log(li);
       li.remove();
     });
 
