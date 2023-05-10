@@ -54,13 +54,20 @@ document.addEventListener("DOMContentLoaded", () => {
       countryCard.className = "card";
       const divCard = document.createElement("div"); // div that contains all the information about countries.Parent of h2, img, and h5. class= "cardContent"
       divCard.className = "cardContent";
+      const deleteBtnDiv = document.createElement("div"); //div that contains all elements about comments
+      deleteBtnDiv.className = "deleteBtnDiv";
+      const commDiv = document.createElement("div"); //div that contains all elements about comments
+      commDiv.className = "comment-div";
       const countryTitle = document.createElement("h2"); //child of divCard (class= "cardContent")
       countryTitle.textContent = countries[key].country;
       const countryImage = document.createElement("img"); //child of divCard (class= "cardContent")
       countryImage.className = "country-avatar";
       countryImage.src = countries[key].flagUrl;
       const populationTitle = document.createElement("h5"); //child of divCard. Main text container
-      
+
+      const utilityDiv = document.createElement("div"); //div that contains all elements about comments
+      utilityDiv.className = "utility";
+
       //Main text inside card.
       populationTitle.textContent = `According to 2023 data, the total population of ${
         countries[key].country
@@ -98,28 +105,26 @@ document.addEventListener("DOMContentLoaded", () => {
       //AppendChild card elemts
       document.querySelector("#output").appendChild(countryCard);
       //countryCard.appendChild(); //div for info
-      countryCard.appendChild(divCard); //div for info
-      divCard.appendChild(deleteBtn);
+      countryCard.appendChild(utilityDiv); //div for info
+      countryCard.appendChild(utilityDiv); //div for info
+      countryCard.appendChild(commDiv); //div for info
+
+      utilityDiv.appendChild(divCard); //div for info
+      utilityDiv.appendChild(deleteBtnDiv); //div for comments
+      deleteBtnDiv.appendChild(deleteBtn);
 
       divCard.appendChild(countryTitle);
       divCard.appendChild(countryImage);
       divCard.appendChild(populationTitle);
-      divCard.appendChild(commenForm); //appending the comment form to the comment div
+      commDiv.appendChild(commenForm); //appending the comment form to the comment div
       commenForm.appendChild(textarea); //appending the textbox to the form
       commenForm.appendChild(submitBtn); //appending the submit button to the form
-      divCard.appendChild(ulFinalMessage); //Appending HTML ul to the comments div.
-
-
-
-
-      
-     
 
       // Add an event listener to leave a message
       commenForm.addEventListener("submit", saveMessages);
 
       function displayMessages() {
-        
+        commDiv.appendChild(ulFinalMessage); //Appending HTML ul to the comments div.
       }
       //Function to leave comments.
       function saveMessages(e) {
