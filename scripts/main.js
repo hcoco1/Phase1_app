@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         arrayCountries.push(country);
       });
       handleData(countries);
+      
     });
 
   // handle and display countries
@@ -127,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.table(arrayMessages);
 
         //For loop to create a dinamic list
-        //let resultUl = document.querySelector(".ul-final-Message");
+       
         let resultHtml = "";
         arrayMessages.forEach((messa, index) => {
           resultHtml += `
@@ -137,9 +138,10 @@ document.addEventListener("DOMContentLoaded", () => {
             </li>
           `;
         });
-        console.table(arrayMessages);
-
+        console.table(resultHtml);
+        divCard.appendChild(ulFinalMessage)
         ulFinalMessage.innerHTML = resultHtml;
+        console.log(resultHtml)
 
         // Add event listener to delete buttons
         const deleteBtns = document.querySelectorAll(".delete-btn");
@@ -265,15 +267,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // Filter an array of country objects by the given property and displays the sorted results.
   function filterCountry(property, dattaArray) {
     let itemText = inputBoxSearch.value;
+    let foundCountry = false; // Variable to track if the country is found
     // filter the array of countries by the selected property.
     dattaArray.forEach((o) => {
       if (o.country.toLowerCase() === itemText.toLowerCase()) {
         // Display the filtered results.
         handleData([o]);
-        // Refresh the page after a delay of 3 seconds
+        foundCountry = true; // Set foundCountry to true if the country is found
       }
       inputBoxSearch.value = "";
     });
+    if (!foundCountry) {
+      // Condition is false, country not found
+      output.innerHTML = `${itemText} not found.`;
+    }
   }
 
   filterForm.addEventListener("submit", (event) => {

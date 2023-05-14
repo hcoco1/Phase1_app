@@ -6,8 +6,10 @@
 
 #### Project Pitch
 
-**World Population Dashboard (WPD)** is an HTML/CSS/JS app that accesses data from a web service (https://world-population-dashboard.onrender.com/countries). WPD returns a collection of countries. Each object has six attributes (country, area_in_Square_Kilometers, population, flagUrl, and message). The App fetches all the data as soon the browser load. Also, users can search for a specific country using an HTML form and sort the collection by their properties.
-Moreover, users can add a new country. Finally, users can leave personalized messages on the text box input. 
+**World Population Dashboard (WPD)** is an HTML/CSS/JS app that accesses data from a web service (https://world-population-dashboard.onrender.com/countries).
+A json() file was created from free internet data and deployed in a web server. WPD returns a collection of countries, and the App fetches all data as soon as the browser loads. Users can search for a country using an HTML form and sort the collection by properties.
+Moreover, users can add a new country. Finally, users can leave personalized messages on the text box input.
+
  
 ---
 
@@ -60,7 +62,7 @@ Project Structure
    
 8. One POST method.
 
-9. Two DELETE methods.
+9. One DELETE methods.
 
 **Challenges**
 
@@ -69,6 +71,13 @@ Project Structure
  2. Deployment, Database: (https://world-population-dashboard.onrender.com), App : (https://hcoco1.github.io/Phase1_app/)
  
  3. Responsive design (Adding a mobile-style CSS file)
+
+**Resources**
+
+1. Video Link: Phase 1 Project: https://youtu.be/uhTqRRW-RKk
+2. Ivan-website: https://hcoco1.github.io/hcoco1-website/
+3. Blog Link: Phase 1: https://dev.to/hcoco1/javascript-dynamic-list-the-dom-manipulation-10c5
+
    
 
 
