@@ -256,7 +256,7 @@ function fetchPost(e) {
     .then((response) => {
       console.log(response.country)
       // message to the DOM
-      successMessage.textContent = `${addcountryForm[1].value} added successfully!`;
+      successMessage.textContent = `${addcountryForm[1].value} added successfully!Click on GET ALL COUNTRIES!`;
       addcountryForm.reset()
       handleData([response])
     })
@@ -274,17 +274,23 @@ function filterCountry(e) {
   countryList.forEach((o) => {
     if (o.country.toLowerCase() === itemText.toLowerCase()) {
       // Display the filtered results.
+            // message to the DOM
+            successMessage.textContent = `${itemText} was found!Click on GET ALL COUNTRIES!`;
       handleData([o]);
+      
       foundCountry = true; // Set foundCountry to true if the country is found
+      
+      
     }
   });
 
   if (!foundCountry) {
     // Condition is false, country not found
-    output.innerHTML = `${itemText} not found.`;
+    successMessage.textContent = `${itemText} not found! Click on GET ALL COUNTRIES!`;
   }
-
+  
   inputBoxSearch.value = "";
+  
 }
 
 function sortCountries(e) {
@@ -326,4 +332,5 @@ function deleteCountryCard(e) {
   )
     .then((res) => res.json())
     .then((updateCountries) => console.log(updateCountries));
+    
 }

@@ -6,7 +6,7 @@
 
 #### Project Pitch
 
-**World Population Dashboard (WPD)** is an HTML/CSS/JS app that accesses data from a web service (https://world-population-dashboard.onrender.com/countries). WPD returns a collection of countries. Each object has four attributes (country, area_in_Square_Kilometers, population, flagUrl, and message). The App fetches all the data as soon the browser load. Also, users can search for a specific country using an HTML form and sort the collection by their properties.
+**World Population Dashboard (WPD)** is an HTML/CSS/JS app that accesses data from a web service (https://world-population-dashboard.onrender.com/countries). WPD returns a collection of countries. Each object has five attributes (country, area_in_Square_Kilometers, population, flagUrl, and message). The App fetches all the data as soon the browser load. Also, users can search for a specific country using an HTML form and sort the collection by their properties.
 Moreover, users can add a new country. Finally, users can leave personalized messages on the text box input. 
 
 ## Instructions:
