@@ -6,11 +6,22 @@
 
 #### Project Pitch
 
-**World Population Dashboard (WPD)** is an HTML/CSS/JS app that accesses data from a web service (https://world-population-dashboard.onrender.com/countries).
-A json() file was created from free internet data and deployed in a web server. WPD returns a collection of countries, and the App fetches all data as soon as the browser loads. Users can search for a country using an HTML form and sort the collection by properties.
-Moreover, users can add a new country. Finally, users can leave personalized messages on the text box input.
+**World Population Dashboard (WPD)** is an HTML/CSS/JS app that accesses data from a web service (https://world-population-dashboard.onrender.com/countries). WPD returns a collection of countries. Each object has four attributes (country, area_in_Square_Kilometers, population, flagUrl, and message). The App fetches all the data as soon the browser load. Also, users can search for a specific country using an HTML form and sort the collection by their properties.
+Moreover, users can add a new country. Finally, users can leave personalized messages on the text box input. 
 
- 
+## Instructions:
+
+All the data is fetched as soon the app load. The user can scroll down and check the collection of countries. Also, users have access to the app data through five inputs menu:
+
+1.  Search Menu: By typing the country name, users can check if a specific country is in the     database.By clicking the GET ALL COUNTRIES can return to the main screen.
+
+2.  Sort Menu: by clicking on the dropdown Menu, users can sort the database by their properties(country name, country population, and country area).
+
+ 3.  Add New Country Menu: user who wants to add a country has to fill out four text inputs with the information related to their properties: country name, URL from a flag image of the country, country population, and country area (in km2). By clicking the GET ALL COUNTRIES can return to the main screen.
+
+4.   Card Country Menu and buttons: users who want to leave a message on the country card must fill out the text box input and click the submit button. The message will appear immediately and could be deleted if the user prefers. By clicking the red button, the user can delete the country card. 
+
+5.   Theme Menu: by clicking the dropdown menu user can choose between light and dark themes.
 ---
 
 ![how this app works](https://github.com/hcoco1/Phase1_app/blob/main/phase_1_app.gif?raw=true) 
@@ -71,13 +82,6 @@ Project Structure
  2. Deployment, Database: (https://world-population-dashboard.onrender.com), App : (https://hcoco1.github.io/Phase1_app/)
  
  3. Responsive design (Adding a mobile-style CSS file)
-
-**Resources**
-
-1. Video Link: Phase 1 Project: https://youtu.be/uhTqRRW-RKk
-2. Ivan-website: https://hcoco1.github.io/hcoco1-website/
-3. Blog Link: Phase 1: https://dev.to/hcoco1/javascript-dynamic-list-the-dom-manipulation-10c5
-
    
 
 
