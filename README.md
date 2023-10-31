@@ -2,7 +2,8 @@
 
 ## Phase 1 Project: World Population Dashboard
 
-### Link: https://hcoco1.github.io/Phase1_app/
+### App Link: https://hcoco1.github.io/Phase1_app/
+### Demo video link: https://youtu.be/w_4ZAicscw4
 
 #### Project Pitch
 
